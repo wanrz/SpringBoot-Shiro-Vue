@@ -10,13 +10,13 @@
 
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content` varchar(255) DEFAULT '' COMMENT '文章内容',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `delete_status` varchar(1) DEFAULT '1' COMMENT '是否有效  1.有效  2无效',
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `content` VARCHAR(255) DEFAULT '' COMMENT '文章内容',
+  `create_time` TIMESTAMP NULL COMMENT '创建时间',
+  `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `delete_status` VARCHAR(1) DEFAULT '1' COMMENT '是否有效  1.有效  2无效',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='发布号作者表';
+) ENGINE=INNODB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='发布号作者表';
 
 #
 # Data for table "article"
@@ -30,14 +30,14 @@ INSERT INTO `article` VALUES (5,'莎士比亚','2017-10-25 09:08:45','2017-10-30
 
 DROP TABLE IF EXISTS `sys_permission`;
 CREATE TABLE `sys_permission` (
-  `id` int(11) NOT NULL DEFAULT '0' COMMENT '自定id,主要供前端展示权限列表分类排序使用.',
-  `menu_code` varchar(255) DEFAULT '' COMMENT '归属菜单,前端判断并展示菜单使用,',
-  `menu_name` varchar(255) DEFAULT '' COMMENT '菜单的中文释义',
-  `permission_code` varchar(255) DEFAULT '' COMMENT '权限的代码/通配符,对应代码中@RequiresPermissions 的value',
-  `permission_name` varchar(255) DEFAULT '' COMMENT '本权限的中文释义',
-  `required_permission` tinyint(1) DEFAULT '2' COMMENT '是否本菜单必选权限, 1.必选 2非必选 通常是"列表"权限是必选',
+  `id` INT(11) NOT NULL DEFAULT '0' COMMENT '自定id,主要供前端展示权限列表分类排序使用.',
+  `menu_code` VARCHAR(255) DEFAULT '' COMMENT '归属菜单,前端判断并展示菜单使用,',
+  `menu_name` VARCHAR(255) DEFAULT '' COMMENT '菜单的中文释义',
+  `permission_code` VARCHAR(255) DEFAULT '' COMMENT '权限的代码/通配符,对应代码中@RequiresPermissions 的value',
+  `permission_name` VARCHAR(255) DEFAULT '' COMMENT '本权限的中文释义',
+  `required_permission` TINYINT(1) DEFAULT '2' COMMENT '是否本菜单必选权限, 1.必选 2非必选 通常是"列表"权限是必选',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='后台权限表';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='后台权限表';
 
 #
 # Data for table "sys_permission"
@@ -51,13 +51,13 @@ INSERT INTO `sys_permission` VALUES (101,'article','文章管理','article:list'
 
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(20) DEFAULT NULL COMMENT '角色名',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `delete_status` varchar(1) DEFAULT '1' COMMENT '是否有效  1有效  2无效',
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `role_name` VARCHAR(20) DEFAULT NULL COMMENT '角色名',
+  `create_time` TIMESTAMP NULL,
+  `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `delete_status` VARCHAR(1) DEFAULT '1' COMMENT '是否有效  1有效  2无效',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='后台角色表';
+) ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='后台角色表';
 
 #
 # Data for table "sys_role"
@@ -71,14 +71,14 @@ INSERT INTO `sys_role` VALUES (1,'管理员','2017-11-22 16:24:34','2017-11-22 1
 
 DROP TABLE IF EXISTS `sys_role_permission`;
 CREATE TABLE `sys_role_permission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) DEFAULT NULL COMMENT '角色id',
-  `permission_id` int(11) DEFAULT NULL COMMENT '权限id',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `delete_status` varchar(1) DEFAULT '1' COMMENT '是否有效 1有效     2无效',
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `role_id` INT(11) DEFAULT NULL COMMENT '角色id',
+  `permission_id` INT(11) DEFAULT NULL COMMENT '权限id',
+  `create_time` TIMESTAMP  NULL,
+  `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `delete_status` VARCHAR(1) DEFAULT '1' COMMENT '是否有效 1有效     2无效',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='角色-权限关联表';
+) ENGINE=INNODB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='角色-权限关联表';
 
 #
 # Data for table "sys_role_permission"
@@ -92,16 +92,16 @@ INSERT INTO `sys_role_permission` VALUES (1,2,101,'2017-11-22 16:26:21','2017-11
 
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
-  `password` varchar(255) DEFAULT NULL COMMENT '密码',
-  `nickname` varchar(255) DEFAULT NULL COMMENT '昵称',
-  `role_id` int(11) DEFAULT '0' COMMENT '角色ID',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `delete_status` varchar(1) DEFAULT '1' COMMENT '是否有效  1有效  2无效',
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) DEFAULT NULL COMMENT '用户名',
+  `password` VARCHAR(255) DEFAULT NULL COMMENT '密码',
+  `nickname` VARCHAR(255) DEFAULT NULL COMMENT '昵称',
+  `role_id` INT(11) DEFAULT '0' COMMENT '角色ID',
+  `create_time` TIMESTAMP NULL COMMENT '创建时间',
+  `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `delete_status` VARCHAR(1) DEFAULT '1' COMMENT '是否有效  1有效  2无效',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10008 DEFAULT CHARSET=utf8 COMMENT='运营后台用户表';
+) ENGINE=INNODB AUTO_INCREMENT=10008 DEFAULT CHARSET=utf8 COMMENT='运营后台用户表';
 
 #
 # Data for table "sys_user"
