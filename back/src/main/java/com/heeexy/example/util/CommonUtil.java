@@ -17,7 +17,7 @@ import java.util.List;
 public class CommonUtil {
 
 	/**
-	 * 返回一个info为空对象的成功消息的json
+	 * 返回一个data为空对象的成功消息的json
 	 */
 	public static JSONObject successJson() {
 		return successJson(new JSONObject());
@@ -26,11 +26,11 @@ public class CommonUtil {
 	/**
 	 * 返回一个返回码为100的json
 	 */
-	public static JSONObject successJson(Object info) {
+	public static JSONObject successJson(Object data) {
 		JSONObject resultJson = new JSONObject();
 		resultJson.put("code", Constants.SUCCESS_CODE);
 		resultJson.put("msg", Constants.SUCCESS_MSG);
-		resultJson.put("info", info);
+		resultJson.put("data", data);
 		return resultJson;
 	}
 
@@ -41,7 +41,7 @@ public class CommonUtil {
 		JSONObject resultJson = new JSONObject();
 		resultJson.put("code", errorEnum.getErrorCode());
 		resultJson.put("msg", errorEnum.getErrorMsg());
-		resultJson.put("info", new JSONObject());
+		resultJson.put("data", new JSONObject());
 		return resultJson;
 	}
 
@@ -56,11 +56,11 @@ public class CommonUtil {
 		int pageRow = requestJson.getIntValue("pageRow");
 		int totalPage = getPageCounts(pageRow, totalCount);
 		JSONObject result = successJson();
-		JSONObject info = new JSONObject();
-		info.put("list", list);
-		info.put("totalCount", totalCount);
-		info.put("totalPage", totalPage);
-		result.put("info", info);
+		JSONObject data = new JSONObject();
+		data.put("list", list);
+		data.put("totalCount", totalCount);
+		data.put("totalPage", totalPage);
+		result.put("data", data);
 		return result;
 	}
 
@@ -71,9 +71,9 @@ public class CommonUtil {
 	 */
 	public static JSONObject successPage(List<JSONObject> list) {
 		JSONObject result = successJson();
-		JSONObject info = new JSONObject();
-		info.put("list", list);
-		result.put("info", info);
+		JSONObject data = new JSONObject();
+		data.put("list", list);
+		result.put("data", data);
 		return result;
 	}
 
@@ -145,7 +145,7 @@ public class CommonUtil {
 				jsonObject.clear();
 				jsonObject.put("code", ErrorEnum.E_90003.getErrorCode());
 				jsonObject.put("msg", "缺少必填参数:" + missCol.trim());
-				jsonObject.put("info", new JSONObject());
+				jsonObject.put("data", new JSONObject());
 				throw new CommonJsonException(jsonObject);
 			}
 		}

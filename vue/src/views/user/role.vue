@@ -126,6 +126,7 @@
           url: "/user/listRole",
           method: "get"
         }).then(data => {
+          debugger
           this.listLoading = false;
           this.list = data.list;
         })
