@@ -8,7 +8,7 @@ const user = {
   state: {
     nickname: "",
     userId: "",
-    avatar: 'https://www.gravatar.com/avatar/6560ed55e62396e40b34aac1e5041028',
+    avatar: '/static/img/logo_1.jpg',
     role: '',
     menus: [],
     permissions: [],
