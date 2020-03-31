@@ -22,7 +22,7 @@ service.interceptors.response.use(
     if (res.code == '1000') {
       return res;
     }
-    if (res.code == '200') {
+    if (res.code == '200' || res.code == '0') {
       return res.data;
     } else if (res.code == "20011") {
       Message({

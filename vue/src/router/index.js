@@ -45,9 +45,9 @@ export const asyncRouterMap = [
         meta: { title: '人脸比对', icon: 'example' },
         menu: 'article'
       },{
-        path: 'feature',
+        path: 'exactFeature',
         name: '特征提取',
-        component: _import('article/article'),
+        component: _import('face/exactFeature'),
         meta: { title: '特征提取', icon: 'example' },
         menu: 'article'
       },

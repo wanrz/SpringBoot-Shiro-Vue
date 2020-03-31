@@ -31,6 +31,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://localhost:9090',
+        // target: 'http://10.128.134.25:9090',
         pathRewrite: {
           '^/api': '/'
         }
