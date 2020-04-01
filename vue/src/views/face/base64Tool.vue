@@ -20,15 +20,7 @@
           <img width="100%" :src="dialogImageUrl" alt />
         </el-dialog>
       </div>
-      <div class="imgright">{{feature}}</div>
-    </div>
-    <div class="filter-container">
-      <el-form>
-        <el-form-item>
-          <!-- <el-button type="primary" icon="plus" @click="exactFeature">上传图片</el-button> -->
-          <el-button type="primary" icon="plus" @click="exactFeature">提取特征</el-button>
-        </el-form-item>
-      </el-form>
+      <div class="imgright">{{imgBase64}}</div>
     </div>
   </div>
 </template>
@@ -39,8 +31,7 @@ export default {
   components: {},
   data() {
     return {
-      img: "",
-      feature: "",
+      imgBase64: "",
       hideUpload: false, // 是否隐藏上传按钮
       limitCount: 1, //上传图片数量限制
       fileList: [], // 上传的文件列表
@@ -53,27 +44,11 @@ export default {
     this.fileList = [];
   },
   methods: {
-    exactFeature() {
-      //提取特征
-      this.api({
-        url: "/icbc/exactFeature",
-        method: "post",
-        data: { img: this.img }
-      }).then(res => {
-        debugger;
-        this.feature = res.feature;
-        this.$message({
-          message: "操作成功",
-          type: "success"
-        });
-      });
-    },
     //上传组件相关事件方法
     handleRemove(file, fileList) {
       //删除图片事件
       console.log(file, fileList);
-      this.img = "";
-      this.feature = "";
+      this.imgBase64 = "";
       this.hideUpload = fileList.length >= this.limitCount;
     },
     handlePictureCardPreview(file) {
@@ -85,8 +60,12 @@ export default {
     handleAvatarSuccess(res, file) {
       //上传图片成功后事件
       // this.addList.imgPath = res.data.fileName;
-      this.img = res.imgBase64;
+      this.imgBase64 = res.imgBase64;
       this.dialogVisible = false;
+      this.$message({
+        message: "操作成功",
+        type: "success"
+      });
     },
     handleChange(file, fileList) {
       //chang事件,上述3个事件均会触发

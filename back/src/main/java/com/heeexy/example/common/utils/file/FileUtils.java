@@ -1,5 +1,7 @@
 package com.heeexy.example.common.utils.file;
 
+import com.heeexy.example.engine.util.Base64Coder;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.URLEncoder;
@@ -133,5 +135,29 @@ public class FileUtils
             filename = URLEncoder.encode(filename, "utf-8");
         }
         return filename;
+    }
+    
+    /**
+     *@描述 传入文件路径，将文件加密成base64字符串
+     *@参数 文件路径
+     *@返回值 base64字符串
+     */
+    public static String encodeFileToBase64(String path) throws Exception {
+        File file = new File(path);
+        FileInputStream inputFile = new FileInputStream(file);
+        byte[] buffer = new byte[(int) file.length()];
+        inputFile.read(buffer);
+        inputFile.close();
+        return clearBase64String(Base64Coder.encodeLines(buffer));
+    }
+
+    /**
+     * 将字节数组进行base64编码，然后替换换行和回车等字符
+     *
+     * @param str
+     * @return
+     */
+    public static String clearBase64String(String str) {
+        return str.replaceAll("\r\n", "").replaceAll("\r", "").replaceAll("\n", "").replaceAll("\\s", "+");
     }
 }

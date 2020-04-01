@@ -41,7 +41,7 @@ export const asyncRouterMap = [
       {
         path: 'facecomepile',
         name: '人脸比对',
-        component: _import('article/article'),
+        component: _import('face/facecomepile'),
         meta: { title: '人脸比对', icon: 'example' },
         menu: 'article'
       },{
@@ -49,6 +49,12 @@ export const asyncRouterMap = [
         name: '特征提取',
         component: _import('face/exactFeature'),
         meta: { title: '特征提取', icon: 'example' },
+        menu: 'article'
+      },{
+        path: 'base64Tool',
+        name: '图片base64工具',
+        component: _import('face/base64Tool'),
+        meta: { title: 'base64工具', icon: 'example' },
         menu: 'article'
       },
     ]
