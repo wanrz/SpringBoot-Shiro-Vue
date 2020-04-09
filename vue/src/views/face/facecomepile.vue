@@ -51,8 +51,9 @@
   </div>
 </template>
 <script>
-// const baseurl = process.env.BASE_URL;
-const baseurl = "http://10.128.134.25:9090";
+// const baseurl = process.env.BASE_URL !== 'undefined' ? process.env.BASE_URL:config.picpath;
+const baseurl = config.picpath;
+debugger
 export default {
   components: {},
   data() {
@@ -97,7 +98,7 @@ export default {
     handleRemoveA(file, fileListA) {
       //删除图片事件
       this.imgA = "";
-      THIS.result = "";
+      this.result = "";
       console.log(file, fileListA);
       this.hideUploadA = fileListA.length >= this.limitCountA;
     },
@@ -122,7 +123,7 @@ export default {
     handleRemoveB(file, fileListB) {
       //删除图片事件
       this.imgB = "";
-      THIS.result = "";
+      this.result = "";
       console.log(file, fileListB);
       this.hideUploadB = fileListB.length >= this.limitCountB;
     },

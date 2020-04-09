@@ -9,8 +9,8 @@ project:
   # 实例演示开关
   demoEnabled: true
   # 文件路径 示例（ Windows配置D:/engine/uploadPath，Linux配置 /home/engine/uploadPath）
-#  profile: D:/engine/uploadPath
-  profile: /home/engine/uploadPath
+  profile: D:/engine/uploadPath
+#  profile: /home/engine/uploadPath
   # 获取ip地址开关
   addressEnabled: true
 

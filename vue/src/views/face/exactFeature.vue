@@ -33,8 +33,10 @@
   </div>
 </template>
 <script>
+// const baseurl = process.env.BASE_URL !== 'undefined' ? process.env.BASE_URL:config.picpath;
 // const baseurl = process.env.BASE_URL;
-const baseurl = "http://10.128.134.25:9090";
+const baseurl = config.picpath;
+debugger
 export default {
   components: {},
   data() {
