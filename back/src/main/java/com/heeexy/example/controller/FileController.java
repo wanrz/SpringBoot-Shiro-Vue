@@ -30,7 +30,7 @@ public class FileController {
             AjaxResult ajax = AjaxResult.success();
             ajax.put("imgUrl", imgUrl);
             String imgBase64=FileUtils.encodeFileToBase64(ProjectConfig.getProfile()+ File.separator+imgUrl);
-            logger.info(imgBase64);
+//            logger.info(imgBase64);
             ajax.put("imgBase64",imgBase64);
             return ajax;
         }
